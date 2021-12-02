@@ -40,7 +40,7 @@ class _ConveterState extends State<Converter> {
                 children: <Widget>[
                   MaterialButton(
                       child: Text(" Convert"),
-                      color: Colors.orangeAccent,
+                      color: Colors.blueAccent,
                       onPressed: doConvert)
                 ],
               ),

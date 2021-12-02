@@ -2,6 +2,7 @@
 // ignore_for_file: file_names
 
 import 'dart:convert';
+import 'dart:html';
 import 'dart:math';
 
 import 'package:flutter/gestures.dart';
@@ -12,9 +13,8 @@ import 'history/historyScreen.dart';
 import 'ConverterFolder/Converter.dart';
 
 class HomePage extends StatefulWidget {
-  // creating a stateful widget
   @override
-  State createState() => new HomePageState(); // creating the state
+  State createState() => new HomePageState();
 }
 
 class HomePageState extends State<HomePage> {
@@ -115,6 +115,9 @@ class HomePageState extends State<HomePage> {
           io = io + key;
         });
     }
+
+    // history Track
+
     setState(() {
       displayData = io;
     });
@@ -151,7 +154,7 @@ class HomePageState extends State<HomePage> {
         child: Text(key,
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24.0)),
         textColor: Colors.black,
-        color: Colors.orange,
+        color: Colors.blueAccent,
         onPressed: () => _controller(key),
       );
 
@@ -160,20 +163,18 @@ class HomePageState extends State<HomePage> {
       child: Text(key,
           style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24.0)),
       textColor: Colors.black,
-      color: Colors.grey[700],
+      color: Colors.white,
       onPressed: () => _controller(key),
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    // creating the widget
-    // ignore: unnecessary_new
-    return new Scaffold(
-      appBar: new AppBar(
+    return Scaffold(
+      appBar: AppBar(
         //defines the content of the Appbar
         // ignore: prefer_const_constructors
-        title: new Text(
+        title: Text(
           "Calculator",
           style: TextStyle(color: Colors.white, fontSize: 20.0),
         ),
@@ -186,20 +187,15 @@ class HomePageState extends State<HomePage> {
       drawer: Drawer(
         child: ListView(
           children: [
-            const DrawerHeader(
-              child: Text(
-                ' Options ',
-                style: TextStyle(
-                  fontSize: 20.0,
-                ),
-              ),
-              padding: EdgeInsets.symmetric(vertical: 50.0, horizontal: 50.0),
-              decoration: BoxDecoration(
-                color: Colors.grey,
-              ),
-            ),
+            Padding(padding: EdgeInsets.all(50.0)),
             ListTile(
-              title: Text('Converter'),
+              tileColor: Colors.lightBlue,
+              title: Text('Converter',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20,
+                  )),
               onTap: () {
                 Navigator.push(
                   context,
@@ -207,8 +203,15 @@ class HomePageState extends State<HomePage> {
                 );
               },
             ),
+            Padding(padding: EdgeInsets.only(top: 10.0)),
             ListTile(
-              title: Text('History'),
+              tileColor: Colors.lightBlue,
+              title: Text('History',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20,
+                  )),
               onTap: () {
                 Navigator.push(
                   context,
@@ -219,7 +222,7 @@ class HomePageState extends State<HomePage> {
           ],
         ),
       ),
-      body: new Container(
+      body: Container(
         //defines the content of the body
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -250,7 +253,7 @@ class HomePageState extends State<HomePage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
-                _button("%", "operator"), // using custom widget _button
+                _button("%", "operator"),
                 _button("^", "operator"),
                 _button("C", "operator"),
                 _button("AC", "output")
@@ -259,7 +262,7 @@ class HomePageState extends State<HomePage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
-                _button("7", "input"), // using custom widget _button
+                _button("7", "input"),
                 _button("8", "input"),
                 _button("9", "input"),
                 _button("/", "operator")
@@ -268,7 +271,7 @@ class HomePageState extends State<HomePage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
-                _button("4", "input"), // using custom widget _button
+                _button("4", "input"),
                 _button("5", "input"),
                 _button("6", "input"),
                 _button("X", "operator")
@@ -277,7 +280,7 @@ class HomePageState extends State<HomePage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
-                _button("1", "input"), // using custom widget _button
+                _button("1", "input"),
                 _button("2", "input"),
                 _button("3", "input"),
                 _button("+", "operator")
@@ -286,7 +289,7 @@ class HomePageState extends State<HomePage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
-                _button("=", "output"), // using custom widget _button
+                _button("=", "output"),
                 _button("0", "input"),
                 _button(".", "input"),
                 _button("-", "operator"),

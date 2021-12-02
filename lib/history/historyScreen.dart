@@ -36,9 +36,10 @@ class _HistoryScreenState extends State<HistoryScreen> {
                 child: Column(children: [
                   SizedBox(
                     child: Text(
-                      'history : ${historyLists[index]}',
+                      ' =>  ${historyLists[index]}',
                       style: const TextStyle(
-                          fontSize: 18, fontWeight: FontWeight.w400),
+                        fontSize: 20,
+                      ),
                     ),
                   )
                 ]));
@@ -49,7 +50,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
       appBar: AppBar(
         title: const Text("History"),
         centerTitle: true,
-        backgroundColor: Colors.orangeAccent,
+        backgroundColor: Colors.blueAccent,
       ),
       body: SingleChildScrollView(
         child: Stack(

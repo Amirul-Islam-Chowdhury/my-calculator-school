@@ -1,14 +1,13 @@
-// ignore: file_names
-// ignore_for_file: file_names
-
 import 'dart:convert';
-import 'dart:html';
 import 'dart:math';
 
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:my_calculator/ConverterFolder/firedatabase/FbManager.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'history/historyScreen.dart';
+import 'history/FirebaseData.dart';
 
 import 'ConverterFolder/Converter.dart';
 
@@ -114,25 +113,23 @@ class HomePageState extends State<HomePage> {
         setState(() {
           io = io + key;
         });
-    }
+     }
 
     // history Track
 
     setState(() {
-      displayData = io;
+      if (key == "=") {
+        history = firstNumber.toString() +
+            " " +
+            oprator.toString() +
+            " " +
+            secondNumber.toString() +
+            "   $io";
+      }
     });
 
-    if (key == "=") {
-      history = firstNumber.toString() +
-          " " +
-          oprator.toString() +
-          " " +
-          secondNumber.toString() +
-          " = $io";
-    }
-
     historyList.add(history);
-    historyList.remove('');
+    await FbManager().createHistoryData(history);
 
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setStringList('history', historyList);
@@ -216,6 +213,22 @@ class HomePageState extends State<HomePage> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => HistoryScreen()),
+                );
+              },
+            ),
+            Padding(padding: EdgeInsets.only(top: 10.0)),
+            ListTile(
+              tileColor: Colors.lightBlue,
+              title: Text('Firebase History',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20,
+                  )),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => FirebaseData()),
                 );
               },
             ),

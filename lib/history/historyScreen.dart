@@ -47,21 +47,11 @@ class _HistoryScreenState extends State<HistoryScreen> {
     }
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("History"),
-        centerTitle: true,
-        backgroundColor: Colors.blueAccent,
-      ),
-      body: SingleChildScrollView(
-        child: Stack(
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.all(8),
-              child: display(),
-            ),
-          ],
+        appBar: AppBar(
+          title: const Text(" History"),
+          centerTitle: true,
+          backgroundColor: Colors.blueAccent,
         ),
-      ),
-    );
+        body: display());
   }
 }

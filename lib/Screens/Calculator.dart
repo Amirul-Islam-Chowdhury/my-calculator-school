@@ -4,12 +4,12 @@ import 'dart:math';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:my_calculator/ConverterFolder/firedatabase/FbManager.dart';
+import 'package:my_calculator/firedatabase/FbManager.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'history/historyScreen.dart';
-import 'history/FirebaseData.dart';
+import '../history/historyScreen.dart';
+import '../firedatabase/FirebaseData.dart';
 
-import 'ConverterFolder/Converter.dart';
+import '../ConverterFolder/Converter.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -113,7 +113,7 @@ class HomePageState extends State<HomePage> {
         setState(() {
           io = io + key;
         });
-     }
+    }
 
     // history Track
 

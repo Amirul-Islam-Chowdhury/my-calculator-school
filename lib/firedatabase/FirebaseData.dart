@@ -50,7 +50,7 @@ class _FirebaseDataState extends State<FirebaseData> {
                             alignment: Alignment.centerLeft,
                             child: Column(children: [
                               Text(
-                                'Equation : ${snapshot.data!.docs[index]["history"]}',
+                                ' : ${snapshot.data!.docs[index]["history"]}',
                                 style: const TextStyle(
                                     fontSize: 18, fontWeight: FontWeight.w400),
                               )

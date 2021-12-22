@@ -20,7 +20,7 @@ class HomePageState extends State<HomePage> {
   var io = "";
   var firstNumber = "";
   var oprator = "";
-  var secondNumber = "";
+  var secondNumber = " ";
   String history = "";
   List<String> historyList = [];
   String displayData = '';
@@ -67,7 +67,6 @@ class HomePageState extends State<HomePage> {
 // Controller
 
   void _controller(key) async {
-    history = "";
     if (key == "=")
       calculator();
     else if (key == "AC")
@@ -126,13 +125,12 @@ class HomePageState extends State<HomePage> {
             secondNumber.toString() +
             "   $io";
       }
+      historyList.add(history);
     });
-
-    historyList.add(history);
-    await FbManager().createHistoryData(history);
 
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setStringList('history', historyList);
+    await FbManager().createHistoryData(history);
   }
 
   Widget _button(String key, String type) {
